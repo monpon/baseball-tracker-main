@@ -12,5 +12,11 @@ public class graphList {
         gL = gL1;
     }
 
+    public ArrayList<graphable> getPointList () {
+        return g;
+    }
 
+    public ArrayList<graphableLine> getLineList () {
+        return gL;
+    }
 }

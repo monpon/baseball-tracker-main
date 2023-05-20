@@ -24,7 +24,7 @@ public class runGraph {
         gList = graphList;
     }
 
-    public graphList geGraphList (){
+    public graphList getGraphList (){
         return lGraphList;
     }
 
@@ -52,7 +52,7 @@ public class runGraph {
         }
         
         lGraphList = new graphList(g, gL);
-
+        
     }
 
     private void plotPoint (graphable a){

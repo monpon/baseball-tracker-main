@@ -14,5 +14,12 @@ public class graphableLine extends graphable {
         endY = eY;
         endZ = eZ;
     }
+
+    public graphableLine (double tX, double tY, double eX, double eY){
+        super(tX, tY);
+        endX = eX;
+        endY = eY;
+        endZ = 0;
+    }
     
 }

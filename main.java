@@ -10,7 +10,7 @@ public class main {
         
         //create camera
         //create baseball
-
+        
         //open parameters
 
         //constantly run update graph. 

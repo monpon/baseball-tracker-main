@@ -12,4 +12,10 @@ public class graphable {
         z = tZ;
     }
     
+    public graphable (double tX, double tY){
+        x = tX;
+        y = tY;
+        z = 0;
+    }
+
 }

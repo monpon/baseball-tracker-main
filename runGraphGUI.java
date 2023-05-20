@@ -1,7 +1,8 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
- 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
  
@@ -36,9 +37,13 @@ public class runGraphGUI extends JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         
-        graphList a = rG.geGraphList();
-        for ()
+        graphList a = rG.getGraphList();
         
+        ArrayList<graphableLine> lineList = a.getLineList();
+
+        for (graphableLine i : lineList){
+            drawLine(g, (int) i.x, (int) i.y, (int) i.endX, (int) i.endY);
+        }
 
     }
     
