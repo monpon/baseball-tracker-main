@@ -45,6 +45,12 @@ public class runGraphGUI extends JFrame {
             drawLine(g, (int) i.x, (int) i.y, (int) i.endX, (int) i.endY);
         }
 
+        ArrayList<graphable> pointList = a.getPointList();
+
+        for (graphable i : pointList){
+            drawDot(g, (int) i.x, (int) i.y);
+        }
+
     }
     
     /* 

@@ -1,4 +1,4 @@
-//not correct, thing u need to graph isnt 3d but instead a 2d object TODO >:(
+
 import java.util.ArrayList;
 
 public class graphList {
