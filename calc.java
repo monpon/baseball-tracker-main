@@ -7,7 +7,11 @@ public class calc {
 
     
     private double x1, y1; 
-    private double x2, y2;    
+    private double x2, y2;
+
+
+    //creating an object, constructor looks at text file. 
+    //then uses calc.xEquation(_____) to claculate stuff.
 }
 
 
