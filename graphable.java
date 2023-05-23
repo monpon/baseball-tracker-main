@@ -56,4 +56,15 @@ public class graphable {
         return z;
     }
 
+    /**
+     * Setting the new point
+     * @param nX The new X value.
+     * @param nY The new Y value.
+     * @param nZ The new Z value.
+     */
+    public void setPoint (double nX, double nY, double nZ){
+        x = nX;
+        y = nY;
+        z = nZ;
+    }
 }

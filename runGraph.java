@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Object that represents the running of a graph
+ */
 public class runGraph {
 
     private camera c;
@@ -19,6 +22,7 @@ public class runGraph {
     //and a list of graphable objects (also having 3d coords)
     //translate that into a 2d window
 
+    
     public runGraph (camera iC, ArrayList<graphable> graphList){
         c = iC;
         gList = graphList;

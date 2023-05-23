@@ -46,15 +46,5 @@ public class camera extends graphable{
         angleL = newAng;
     }
 
-    /**
-     * Setting the new point for camera. 
-     * @param nX The new X value.
-     * @param nY The new Y value.
-     * @param nZ The new Z value.
-     */
-    public void setPoint (double nX, double nY, double nZ){
-        x = nX;
-        y = nY;
-        z = nZ;
-    }
+
 }

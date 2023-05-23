@@ -1,5 +1,3 @@
-
-
 /**
  * An object that represents a line on a 3D plane. It extends graphable and is represented 
  * through a start point and an endpoint.
@@ -39,6 +37,22 @@ public class graphableLine extends graphable {
         endX = eX;
         endY = eY;
         endZ = 0;
+    }
+
+    /**
+     * Setter method for the new line
+     * @param tX The start X coordinate
+     * @param tY The start Y coordinate
+     * @param tZ The start Z coordinate
+     * @param eX The ending X coordinate
+     * @param eY The ending Y coordinate
+     * @param eZ The ending Z coordnate
+     */
+    public void setLine (double tX, double tY, double tZ, double eX, double eY, double eZ){
+        setPoint(tX, tY, tZ);
+        endX = eX;
+        endY = eY;
+        endZ = eZ;
     }
 
     /**
