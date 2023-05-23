@@ -1,5 +1,5 @@
 /**
- * stores the X, Y, and Z axis along with all the lines
+ * Stores the X, Y, and Z axis along with all the lines
  * as seen in matplotlib- essentially the base 3d graph function
  */
 public class plot {
