@@ -59,8 +59,8 @@ public class runGraph {
     private void plotPoint (graphable a){
         //put math here TODO
 
-
-        //dont add a, but a new graphable object that is in 2d (and doesnt have a z)
+        
+        //instead of adding a to g, add a new graphable object that is in 2d (and doesnt have a z)
         g.add(a);
     }
 

@@ -1,10 +1,13 @@
 
-
+/**
+ * Class that represents a 3d object. 
+ */
 public class graphable {
     
-    public double x;
-    public double y;
-    public double z;
+    
+    private double x;
+    private double y;
+    private double z;
     
     public graphable (double tX, double tY, double tZ){
         x = tX;
@@ -16,6 +19,18 @@ public class graphable {
         x = tX;
         y = tY;
         z = 0;
+    }
+
+    public double getX (){
+        return x;
+    }
+
+    public double getY (){
+        return y;
+    }
+    
+    public double getZ (){
+        return z;
     }
 
 }

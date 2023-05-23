@@ -42,13 +42,13 @@ public class runGraphGUI extends JFrame {
         ArrayList<graphableLine> lineList = a.getLineList();
 
         for (graphableLine i : lineList){
-            drawLine(g, (int) i.x, (int) i.y, (int) i.endX, (int) i.endY);
+            drawLine(g, (int) i.getX(), (int) i.getY(), (int) i.getEX(), (int) i.getEY());
         }
 
         ArrayList<graphable> pointList = a.getPointList();
 
         for (graphable i : pointList){
-            drawDot(g, (int) i.x, (int) i.y);
+            drawDot(g, (int) i.getX(), (int) i.getY());
         }
 
     }

@@ -13,8 +13,6 @@ public class main {
 
         //open parameters
 
-
-
         ArrayList<graphable> baseballDots = new ArrayList<>(); //add values to graph here..
 
         //add all calc.XEquations into baseballDots, so it should just be a bunch of 3d points
@@ -24,7 +22,7 @@ public class main {
         runGraphGUI a = new runGraphGUI(rG);
 
         new runGraphGUI(rG).setVisible(true);
-        
+
         //arrows are shifted for angle / camera movement
     }
 }
