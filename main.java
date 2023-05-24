@@ -15,7 +15,7 @@ public class main {
 
         ArrayList<graphable> baseballDots = new ArrayList<>(); //add values to graph here..
 
-        //add all calc.XEquations into baseballDots, so it should just be a bunch of 3d points
+        //add all calc.getEquations into baseballDots, so it should just be a bunch of 3d points
 
         runGraph rG = new runGraph(c, baseballDots);
 
