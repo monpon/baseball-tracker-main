@@ -63,7 +63,7 @@ public class plot {
         //TODO z axis do i want to do whole background?
         temp = 0;
         for (int i = 0; i < numWide; i++){
-            YAxis[i] = new graphableLine(0, temp, 0, DISTANCE_, temp, 0);
+            ZAxis[i] = new graphableLine(0, temp, 0, DISTANCE_, temp, 0);
             temp += INTERVAL_;
         }
         

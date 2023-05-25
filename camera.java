@@ -9,8 +9,6 @@
 public class camera extends graphable{
     private double angleW;
     private double angleL;
-    private double FOV_W;
-    private double FOV_L;
 
     /**
      * The main constructor for the camera object
@@ -22,12 +20,25 @@ public class camera extends graphable{
      * @param f The FOV value for width.
      * @param f2 The FOV value for length.
      */
-    public camera (double tX, double tY, double tZ, double ang1, double ang2, double f, double f2){
+    public camera (double tX, double tY, double tZ, double ang1, double ang2){
         super(tX, tY, tZ);
         angleW = ang1;
         angleL = ang2;
-        FOV_W = f;
-        FOV_L = f2;
+    }
+    /**
+     * getter method for accessing angleW(pan angle)
+     */
+    public double getAngleW()
+    {
+        return angleW;
+    }
+
+    /**
+     * getter method for accessing angleL(tilt angle)
+     */
+    public double getAngleL()
+    {
+        return angleL;
     }
 
     /**
@@ -46,5 +57,6 @@ public class camera extends graphable{
         angleL = newAng;
     }
 
+    
 
 }
