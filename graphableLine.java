@@ -79,4 +79,8 @@ public class graphableLine extends graphable {
         return endZ;
     }
     
+    public String toString() {
+        return getX() + " " + getY() + " " + getZ() + "\n" + getEX() + " " + getEX() + " " + getEZ();
+    }
+
 }

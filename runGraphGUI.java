@@ -16,6 +16,7 @@ public class runGraphGUI extends JFrame {
         super("3D Representation of Baseball");
         
         rG = rG2;
+
         setSize(800, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -31,7 +32,7 @@ public class runGraphGUI extends JFrame {
     
     void drawDot(Graphics g, int x, int y) {
         Graphics g2d = (Graphics2D) g;
-        g2d.drawOval(x, y, DOT_SIZE, DOT_SIZE);
+        g2d.fillOval(x, y, DOT_SIZE, DOT_SIZE);
     }
 
     public void paint(Graphics g) {
@@ -41,13 +42,17 @@ public class runGraphGUI extends JFrame {
         
         ArrayList<graphableLine> lineList = a.getLineList();
 
+        System.out.println(lineList);
+
         for (graphableLine i : lineList){
+            System.out.println("Drawing line at " + i.getX() + " " + i.getY() + " " + i.getEX() + " " + i.getEY());
             drawLine(g, (int) i.getX(), (int) i.getY(), (int) i.getEX(), (int) i.getEY());
         }
 
         ArrayList<graphable> pointList = a.getPointList();
 
         for (graphable i : pointList){
+            System.out.println("Drawing point at " + i);
             drawDot(g, (int) i.getX(), (int) i.getY());
         }
 

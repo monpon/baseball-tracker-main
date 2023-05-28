@@ -29,10 +29,7 @@ public class calc {
         double z_velocity_inPixels = Double.parseDouble(values.get(0).substring(18, 19)) / TIME_BETWEEN_FRAMES;
         double y_velocity_inPixels = Double.parseDouble(values.get(0).substring(21, 22)) / TIME_BETWEEN_FRAMES;
         
-
         
-
-        //access file and stuff
         
         
     }

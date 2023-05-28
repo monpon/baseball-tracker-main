@@ -6,8 +6,8 @@ public class plot {
     
 
     //can have plot change size based on constructors
-    private final double INTERVAL_ = 0.5;
-    private final double DISTANCE_ = 0.5;
+    private final double INTERVAL_ = 50;
+    private final double DISTANCE_ = 50;
 
     private int numWide;
     private int numLong;

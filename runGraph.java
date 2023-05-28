@@ -44,6 +44,7 @@ public class runGraph {
         graphableLine a[] = p.getXAxis();
         
         for (graphableLine i : a){
+            System.out.println(i);
             plotLine(i);
         }
         a = p.getYAxis();
@@ -115,8 +116,10 @@ public class runGraph {
         eY = c.getY() + eS * (a.getEY() - c.getY());
         eZ = c.getZ() + eS * (a.getEZ() - c.getZ());
 
-        graphableLine r = new graphableLine((cp * X) + (sp * Y), (X * sp + Y * cp) * st + Z * ct,  (cp * eX) + (sp * eY), (eX * sp + eY * cp) * st + eZ * ct);
+        graphableLine r = new graphableLine((cp * X) + (sp * Y), (X * sp + Y * cp) * st + Z * ct,  
+                                            (cp * eX) + (sp * eY), (eX * sp + eY * cp) * st + eZ * ct);
 
+        System.out.println(r);
         gL.add(r);
     }
 
