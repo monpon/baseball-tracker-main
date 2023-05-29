@@ -80,7 +80,6 @@ public class graphableLine extends graphable {
     }
     
     public String toString() {
-        return getX() + " " + getY() + " " + getZ() + "\n" + getEX() + " " + getEX() + " " + getEZ();
+        return getX() + " " + getY() + " " + getZ() + " TO " + getEX() + " " + getEY() + " " + getEZ();
     }
-
 }

@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner; // Import the Scanner class to read text files
 
 public class calc {
-
-
     private final double TIME_BETWEEN_FRAMES = 1/240;
     private final double DISTANCE_FIXED = 12;
     private final double WIDTH_OF_BALL = 2.85;
     private final double PIXEL_WIDTH_OF_BALL_AT_DISTANCE_FIXED_AWAY = 131.636;
-
+    private final double focalLength = PIXEL_WIDTH_OF_BALL_AT_DISTANCE_FIXED_AWAY * DISTANCE_FIXED/WIDTH_OF_BALL;
     
     //outputs to coords.txt
     //f, [[x, y, s], [dx, dy, ds]]
@@ -24,14 +22,9 @@ public class calc {
     public calc (){
         ArrayList<String> values = accessFile();
         
-        double focalLength = PIXEL_WIDTH_OF_BALL_AT_DISTANCE_FIXED_AWAY * DISTANCE_FIXED / WIDTH_OF_BALL;
         double x_velocity_inPixels = Double.parseDouble(values.get(0).substring(15, 16)) / TIME_BETWEEN_FRAMES;
         double z_velocity_inPixels = Double.parseDouble(values.get(0).substring(18, 19)) / TIME_BETWEEN_FRAMES;
         double y_velocity_inPixels = Double.parseDouble(values.get(0).substring(21, 22)) / TIME_BETWEEN_FRAMES;
-        
-        
-        
-        
     }
 
     private ArrayList<String> accessFile() {

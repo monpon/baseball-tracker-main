@@ -16,8 +16,17 @@ public class graphList {
      * @param gL1 The graphableLine list
      */
     public graphList (ArrayList<graphable> g1, ArrayList<graphableLine> gL1){
-        g = g1;
-        gL = gL1;
+        g = new ArrayList<graphable>();
+        gL = new ArrayList<graphableLine>();
+
+        for (graphable i : g1) {
+            g.add(i);
+        }
+
+        for (graphableLine j : gL1) {
+            gL.add(j);
+        }
+
     }
 
     /**

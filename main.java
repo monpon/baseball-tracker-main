@@ -5,7 +5,7 @@ public class main {
         //run calculations off coord.txt
         //create calc object
 
-        camera c = new camera (5, 5, 0, 0, 0);
+        camera c = new camera (-5, 5, 5, 0, -1);
         
         
         //create camera
@@ -17,10 +17,11 @@ public class main {
 
         //add all calc.getEquations into baseballDots, so it should just be a bunch of 3d points
         
-        runGraph rG = new runGraph(c, baseballDots);
         
         
-        new runGraphGUI(rG).setVisible(true);
+        //dk if this is necessary to be completely honest
+        
+        new runGraphGUI(c, baseballDots).setVisible(true);
 
         //arrows are shifted for angle / camera movement
     }

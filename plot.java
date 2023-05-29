@@ -1,4 +1,4 @@
-/**
+        /**
  * Stores the X, Y, and Z axis along with all the lines
  * as seen in matplotlib- essentially the base 3d graph function
  */
@@ -7,7 +7,7 @@ public class plot {
 
     //can have plot change size based on constructors
     private final double INTERVAL_ = 50;
-    private final double DISTANCE_ = 50;
+    private final double DISTANCE_ = 500;
 
     private int numWide;
     private int numLong;
@@ -46,7 +46,7 @@ public class plot {
     private void defineAxisArr (){
         XAxis = new graphableLine[numWide];
         YAxis = new graphableLine[numLong];
-        ZAxis = new graphableLine[numTall];
+        ZAxis = new graphableLine[numWide + numLong + numTall*2];
 
         double temp = 0;
         for (int i = 0; i < numWide; i++){
@@ -54,17 +54,46 @@ public class plot {
             temp += INTERVAL_;
         }
 
+
         temp = 0;
-        for (int i = 0; i < numWide; i++){
+        for (int i = 0; i < numLong; i++){
             YAxis[i] = new graphableLine(0, temp, 0, DISTANCE_, temp, 0);
             temp += INTERVAL_;
         }
 
         //TODO z axis do i want to do whole background?
+        //z axis
+
+        int counter = 0;
+
         temp = 0;
         for (int i = 0; i < numWide; i++){
-            ZAxis[i] = new graphableLine(0, temp, 0, DISTANCE_, temp, 0);
+            ZAxis[counter] = new graphableLine (temp, 0, 0, temp, 0, DISTANCE_);
             temp += INTERVAL_;
+            counter++;
+        }
+
+        temp = 0;
+        for (int i = 0; i < numLong; i++){
+            ZAxis[counter] = new graphableLine (0, temp, 0, 0, temp, DISTANCE_);
+            temp += INTERVAL_;
+            counter++;
+        }
+
+        //sideways z axis things
+        temp = 0;
+        for (int i = 0; i < numTall; i++){
+            ZAxis[counter] = new graphableLine (0, 0, temp, DISTANCE_, 0, temp);
+            temp += INTERVAL_;
+            counter++;
+        }
+
+
+        temp = 0;
+        for (int i = 0; i < numTall; i++){
+            ZAxis[counter] = new graphableLine(0, 0, temp, 0, DISTANCE_, temp);
+            temp += INTERVAL_;
+            counter++;
         }
         
     }
@@ -76,6 +105,8 @@ public class plot {
     public graphableLine[] getXAxis (){
         return XAxis;
     }
+
+
 
     /**
      * Getter method for the YAxis array
