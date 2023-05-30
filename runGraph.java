@@ -3,7 +3,8 @@ import java.util.ArrayList;
 /**
  * Object that represents the running of a graph. Handles 3d to 2d calculations
  */
-public class runGraph {
+public class runGraph 
+{
 
     private camera c;
     private ArrayList<graphable> gList; //list of points to graph
@@ -62,27 +63,21 @@ public class runGraph {
         //graphing axis
         plot p = new plot(10, 10, 10);
         
-        System.out.println("X");
         for (graphableLine i : p.getXAxis()){
-            System.out.println(i);
-            plotLine(i);
+            gL.add(plotLine(i));
         }
         
-        System.out.println("Y");
         for (graphableLine i : p.getYAxis()){
-            System.out.println(i);
-            plotLine(i);
+            gL.add(plotLine(i));
         }
         
-        System.out.println("Z");
         for (graphableLine i : p.getZAxis()){
-            System.out.println(i);
-            plotLine(i);
+            gL.add(plotLine(i));
         }
         
         //graphing graphList
         for (graphable i : gList){
-            plotPoint(i);
+            g.add(plotPoint(i));
         }
         
         //in 2d values
@@ -90,36 +85,61 @@ public class runGraph {
 
     }
 
-
-    private void plotPoint (graphable a){ 
+    private graphable plotPoint (graphable a){ 
         //double x = focalLength * (a.getX() - c.getX()) / (a.getZ() - c.getZ());
         //double y = focalLength * (a.getY() - c.getY()) / (a.getZ() - c.getZ());
 
         //calculating trigs functions for further use
-        // double cp = Math.cos(c.getAngleW());
-        // double sp = Math.sin(c.getAngleW());
-        // double ct = Math.cos(c.getAngleL());
-        // double st = Math.sin(c.getAngleL());
+        //need to find l - the distance between the camera and the screen
+        
+        graphable r = new graphable(0, 0);
 
-        // double dx = a.getX() - c.getX();
-        // double dy = a.getY() - c.getY();
-        // double dz = a.getZ() - c.getZ(); 
-        // double S, X, Y, Z;
+        double[] out = new double[2]; 
 
-        // S = ((((ct * cp * ct * cp))) + (ct * sp * ct * sp) + (st * st)) / ( - (ct * cp * dx) - (ct * sp * dy) + (st * dz));
-        // X = c.getX() + S * (a.getX() - c.getX());
-        // Y = c.getY() + S * (a.getY() - c.getY());
-        // Z = c.getZ() + S * (a.getZ() - c.getZ());
+        double l = 55.4;
+
+        double cp = Math.cos(c.getAngleW());
+        double sp = Math.sin(c.getAngleW());
+        double ct = Math.cos(c.getAngleL());
+        double st = Math.sin(c.getAngleL());
+
+        double dx = a.getX() - c.getX();
+        double dy = a.getY() - c.getY();
+        double dz = a.getZ() - c.getZ(); 
+        double S, X, Y, Z;
+
+        S = ((((ct * cp * ct * cp))) + (ct * sp * ct * sp) + (st * st)) / ( - (ct * cp * dx) - (ct * sp * dy) + (st * dz));
+        if (S < 0 || S > l)
+        {
+            return r;
+        }
+        X = l * ((S * dx) - (ct * cp));
+        Y = l * ((ct * sp) - (S * dy));
+        Z = l * ((S * dz) + st);
+
+        out[0] = (sp * X) + (cp * Y) + (400);
+        out[1] = (250) - (((cp*X)-(sp*Y))*st - (Z*ct));
+
+        r = new graphable(out[0], out[1]);
+        return r;
 
         // graphable r = new graphable((cp * X) + (sp * Y), (X * sp + Y * cp) * st + Z * ct);
         // // graphable r = new graphable(x, y);
         
-        // g.add(r);
+        // g.add(r)
     }
 
-    private void plotLine (graphableLine a){
+    private graphableLine plotLine (graphableLine a){
 
+        graphable r1 = new graphable(a.getX(), a.getY(), a.getZ());
+        graphable r2 = new graphable(a.getEX(), a.getEY(), a.getEZ());
+
+        graphableLine r = new graphableLine(plotPoint(r1).getX(), plotPoint(r1).getY(),
+                                            plotPoint(r2).getX(), plotPoint(r2).getY());
         
+        return r;
+
+        /* 
         double x = focalLength * (a.getX() - c.getX()) / (a.getZ() - c.getZ());
         double y = focalLength * (a.getY() - c.getY()) / (a.getZ() - c.getZ());
 
@@ -129,7 +149,9 @@ public class runGraph {
         
         graphableLine r = new graphableLine(x, y, ex, ey);
         gL.add(r);
-        
+        */
+
+
         // double cp = Math.cos(c.getAngleW());
         // double sp = Math.sin(c.getAngleW());
         // double ct = Math.cos(c.getAngleL());
@@ -161,6 +183,5 @@ public class runGraph {
         // System.out.println(r);
         // gL.add(r);
     }
-
 
 }

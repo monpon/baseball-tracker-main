@@ -54,7 +54,9 @@ public class runGraphGUI extends JFrame {
         System.out.println(lineList);
 
         for (graphableLine i : lineList){
-            System.out.println("Drawing line at " + i.getX() + " " + i.getY() + " " + i.getEX() + " " + i.getEY());
+            System.out.println("Drawing line at " + i.getX() + " " + i.getY() + " " + 
+                                                    i.getEX() + " " + i.getEY());
+                                                    
             drawLine(g, (int) i.getX(), (int) i.getY(), (int) i.getEX(), (int) i.getEY());
         }
 

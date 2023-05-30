@@ -5,7 +5,7 @@ public class main {
         //run calculations off coord.txt
         //create calc object
 
-        camera c = new camera (-5, 5, 5, 0, -1);
+        camera c = new camera (5, 5, 5, 0, -1);
         
         
         //create camera
