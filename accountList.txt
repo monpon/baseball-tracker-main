@@ -1,6 +1,0 @@
-timeLogged, timeAccessed, graphable[] ballLocations
-timeLogged, timeAccessed, graphable[] ballLocations
-timeLogged, timeAccessed, graphable[] ballLocations
-timeLogged, timeAccessed, graphable[] ballLocations
-timeLogged, timeAccessed, graphable[] ballLocations
-timeLogged, timeAccessed, graphable[] ballLocations

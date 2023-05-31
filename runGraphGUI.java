@@ -38,7 +38,7 @@ public class runGraphGUI extends JFrame {
     
     void drawDot(Graphics g, int x, int y) {
         Graphics g2d = (Graphics2D) g;
-        g2d.fillOval(x, y, DOT_SIZE, DOT_SIZE);
+        g2d.fillOval(x + 400, y + 250, DOT_SIZE, DOT_SIZE);
     }
 
     /**
@@ -52,11 +52,11 @@ public class runGraphGUI extends JFrame {
         ArrayList<graphableLine> lineList = a.getLineList();
 
         System.out.println(lineList);
-
+        
         for (graphableLine i : lineList){
-            System.out.println("Drawing line at " + i.getX() + " " + i.getY() + " " + 
+            System.out.println("Drawing line at " + i.getX() + " " + i.getY() + " TO " +  
                                                     i.getEX() + " " + i.getEY());
-                                                    
+
             drawLine(g, (int) i.getX(), (int) i.getY(), (int) i.getEX(), (int) i.getEY());
         }
 

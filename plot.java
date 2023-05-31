@@ -60,7 +60,7 @@ public class plot {
             YAxis[i] = new graphableLine(0, temp, 0, DISTANCE_, temp, 0);
             temp += INTERVAL_;
         }
-
+        
         //TODO z axis do i want to do whole background?
         //z axis
 

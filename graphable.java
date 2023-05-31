@@ -67,4 +67,11 @@ public class graphable {
         y = nY;
         z = nZ;
     }
+
+    public String toString() {
+        return getX() + " " + getY() + " " + getZ();
+    }
+
+
+
 }

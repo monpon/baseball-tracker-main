@@ -42,8 +42,18 @@ public class runGraph
             gList.add(i);   
         }
         
+
         g = new ArrayList<graphable>();
         gL = new ArrayList<graphableLine>();
+
+        for (graphable i : gList){
+            g.add(plotPoint(i));
+        }
+
+        
+
+        //gL.add(plotLine(new graphableLine(0, 0, 0, 0, 500, 0)));
+        //gL.add(plotLine(new graphableLine(50, 0, 0, 50, 500, 0)));
         
         lGraphList = new graphList(g, gL);
 
@@ -76,58 +86,103 @@ public class runGraph
         }
         
         //graphing graphList
-        for (graphable i : gList){
-            g.add(plotPoint(i));
-        }
-        
+
         //in 2d values
         lGraphList = new graphList(g, gL);
 
     }
 
+    private double[][] matrixMult(double[][] m1, double[][] m2)
+    {
+        double[][] product = {{m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0]},
+                              {m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1]},
+                              {m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2]}};
+        return product;
+    }
+
     private graphable plotPoint (graphable a){ 
-        //double x = focalLength * (a.getX() - c.getX()) / (a.getZ() - c.getZ());
-        //double y = focalLength * (a.getY() - c.getY()) / (a.getZ() - c.getZ());
 
-        //calculating trigs functions for further use
-        //need to find l - the distance between the camera and the screen
-        
-        graphable r = new graphable(0, 0);
+        //take a point P(x,y,z) in 3d space. 
+        //use rotation matrix to move it to a point with angleW and angleL away in line of camera
+        //then use formula on the points
 
-        double[] out = new double[2]; 
-
-        double l = 55.4;
+        double[] out = new double[2];
 
         double cp = Math.cos(c.getAngleW());
         double sp = Math.sin(c.getAngleW());
         double ct = Math.cos(c.getAngleL());
         double st = Math.sin(c.getAngleL());
 
-        double dx = a.getX() - c.getX();
-        double dy = a.getY() - c.getY();
-        double dz = a.getZ() - c.getZ(); 
-        double S, X, Y, Z;
+        double[][] pointMatrix = {{a.getX() - c.getX(), a.getY() - c.getY(), a.getZ() - c.getZ()}}; 
+                                
+        double[][] rotationW = {{cp, sp, 0}, 
+                                {-sp, cp, 0},
+                                {0, 0 , 1}};
+                                
+        double[][] rotationL = {{ct, 0, -st}, 
+                                {0, 1, 0},
+                                {st, 0, ct}};
 
-        S = ((((ct * cp * ct * cp))) + (ct * sp * ct * sp) + (st * st)) / ( - (ct * cp * dx) - (ct * sp * dy) + (st * dz));
-        if (S < 0 || S > l)
-        {
-            return r;
-        }
-        X = l * ((S * dx) - (ct * cp));
-        Y = l * ((ct * sp) - (S * dy));
-        Z = l * ((S * dz) + st);
+        double[][] newPointMatrix = matrixMult(pointMatrix, rotationW);
+        double[][] finalPointMatrix = matrixMult(newPointMatrix, rotationL);
 
-        out[0] = (sp * X) + (cp * Y) + (400);
-        out[1] = (250) - (((cp*X)-(sp*Y))*st - (Z*ct));
+        double X = finalPointMatrix[0][0];
+        double Y = finalPointMatrix[0][1];
+        double Z = finalPointMatrix[0][2];
 
-        r = new graphable(out[0], out[1]);
+        //a is the fov - justin you can sent the fov
+        out[0] = X/(Y * Math.tan(0.785398163));
+        out[1] = Z/(Y * Math.tan(0.785398163));
+
+        graphable r = new graphable(out[0], out[1]);
+
         return r;
+        //double x = focalLength * (a.getX() - c.getX()) / (a.getZ() - c.getZ());
+        //double y = focalLength * (a.getY() - c.getY()) / (a.getZ() - c.getZ());
+
+        //calculating trigs functions for further use
+        //need to find l - the distance between the camera and the screen
+
+        // graphable r = new graphable(0, 0);
+
+        // double[] out = new double[2]; 
+
+        // double l = 50.4;
+
+        // double cp = Math.cos(c.getAngleW());
+        // double sp = Math.sin(c.getAngleW());
+        // double ct = Math.cos(c.getAngleL());
+        // double st = Math.sin(c.getAngleL());
+
+        
+        // double dx = a.getX() - c.getX();
+        // double dy = a.getY() - c.getY();
+        // double dz = a.getZ() - c.getZ(); 
+        // double S, X, Y, Z;
+
+        // S = ((((ct * cp * ct * cp))) + (ct * sp * ct * sp) + (st * st)) /
+        //      ( - (ct * cp * dx) - (ct * sp * dy) + (st * dz));
+
+        // if (S < 0 || S > l)
+        // {
+        //     return r;
+        // }
+
+        // X = l * ((S * dx) - (ct * cp));
+        // Y = l * ((ct * sp) - (S * dy));
+        // Z = l * ((S * dz) + st);
+
+        // out[0] = (sp * X) + (cp * Y) + (400);
+        // out[1] = (250) - (((cp*X)-(sp*Y))*st - (Z*ct));
+
+        // r = new graphable(out[0], out[1]);
+        // return r;
 
         // graphable r = new graphable((cp * X) + (sp * Y), (X * sp + Y * cp) * st + Z * ct);
         // // graphable r = new graphable(x, y);
         
         // g.add(r)
-    }
+    } 
 
     private graphableLine plotLine (graphableLine a){
 
