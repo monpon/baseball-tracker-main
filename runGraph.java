@@ -68,7 +68,7 @@ public class runGraph
     }
 
     private void plotGraph (){
-
+        
         //graphing axis
         plot p = new plot(10, 10, 10);
         
