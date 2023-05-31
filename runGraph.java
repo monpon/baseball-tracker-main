@@ -5,7 +5,6 @@ import java.util.ArrayList;
  */
 public class runGraph 
 {
-
     private camera c;
     private ArrayList<graphable> gList; //list of points to graph
 
@@ -57,7 +56,7 @@ public class runGraph
         
         lGraphList = new graphList(g, gL);
 
-        //plotGraph();
+        plotGraph();
     }
 
     /**
@@ -109,72 +108,74 @@ public class runGraph
 
         double[] out = new double[2];
 
-        double cp = Math.cos(c.getAngleW());
-        double sp = Math.sin(c.getAngleW());
-        double ct = Math.cos(c.getAngleL());
-        double st = Math.sin(c.getAngleL());
+        // double cp = Math.cos(c.getAngleW());
+        // double sp = Math.sin(c.getAngleW());
+        // double ct = Math.cos(c.getAngleL());
+        // double st = Math.sin(c.getAngleL());
 
-        double[][] pointMatrix = {{a.getX() - c.getX(), a.getY() - c.getY(), a.getZ() - c.getZ()}}; 
+        // double[][] pointMatrix = {{a.getX() - c.getX(), a.getY() - c.getY(), a.getZ() - c.getZ()}}; 
                                 
-        double[][] rotationW = {{cp, sp, 0}, 
-                                {-sp, cp, 0},
-                                {0, 0 , 1}};
+        // // double[][] rotationW = {{cp, sp, 0}, 
+        // //                         {-sp, cp, 0},
+        // //                         {0, 0 , 1}};
                                 
-        double[][] rotationL = {{ct, 0, -st}, 
-                                {0, 1, 0},
-                                {st, 0, ct}};
+        // // double[][] rotationL = {{ct, 0, -st}, 
+        // //                         {0, 1, 0},
+        // //                         {st, 0, ct}};
 
-        double[][] newPointMatrix = matrixMult(pointMatrix, rotationW);
-        double[][] finalPointMatrix = matrixMult(newPointMatrix, rotationL);
+        // // double[][] newPointMatrix = matrixMult(pointMatrix, rotationW);
+        // // double[][] finalPointMatrix = matrixMult(newPointMatrix, rotationL);
 
-        double X = finalPointMatrix[0][0];
-        double Y = finalPointMatrix[0][1];
-        double Z = finalPointMatrix[0][2];
+        // double X = pointMatrix[0][0];
+        // double Y = pointMatrix[0][1];
+        // double Z = pointMatrix[0][2];
 
-        //a is the fov - justin you can sent the fov
-        out[0] = X/(Y * Math.tan(0.785398163));
-        out[1] = Z/(Y * Math.tan(0.785398163));
+        // //a is the fov - justin you can sent the fov
+        // out[0] = X/(Y * Math.tan(0.785398163));
+        // out[1] = Z/(Y * Math.tan(0.785398163));
 
-        graphable r = new graphable(out[0], out[1]);
-
-        return r;
+       
         //double x = focalLength * (a.getX() - c.getX()) / (a.getZ() - c.getZ());
         //double y = focalLength * (a.getY() - c.getY()) / (a.getZ() - c.getZ());
 
         //calculating trigs functions for further use
         //need to find l - the distance between the camera and the screen
 
-        // graphable r = new graphable(0, 0);
+        graphable r = new graphable(0, 0);
 
         // double[] out = new double[2]; 
 
-        // double l = 50.4;
+        double l = 1/Math.tan(0.785398163);
 
-        // double cp = Math.cos(c.getAngleW());
-        // double sp = Math.sin(c.getAngleW());
-        // double ct = Math.cos(c.getAngleL());
-        // double st = Math.sin(c.getAngleL());
+        double cp = Math.cos(c.getAngleW());
+        double sp = Math.sin(c.getAngleW());
+        double ct = Math.cos(c.getAngleL());
+        double st = Math.sin(c.getAngleL());
 
         
-        // double dx = a.getX() - c.getX();
-        // double dy = a.getY() - c.getY();
-        // double dz = a.getZ() - c.getZ(); 
-        // double S, X, Y, Z;
+        double dx = a.getX() - c.getX();
+        double dy = a.getY() - c.getY();
+        double dz = a.getZ() - c.getZ(); 
+        double S, X, Y, Z;
 
-        // S = ((((ct * cp * ct * cp))) + (ct * sp * ct * sp) + (st * st)) /
-        //      ( - (ct * cp * dx) - (ct * sp * dy) + (st * dz));
+        S = ((((ct * cp * ct * cp))) + (ct * sp * ct * sp) + (st * st)) /
+             ( - (ct * cp * dx) - (ct * sp * dy) + (st * dz));
 
-        // if (S < 0 || S > l)
-        // {
-        //     return r;
-        // }
+        if (S < 0 || S > l)
+        {
+            return r;
+        }
 
-        // X = l * ((S * dx) - (ct * cp));
-        // Y = l * ((ct * sp) - (S * dy));
-        // Z = l * ((S * dz) + st);
+        X = l * ((S * dx) - (ct * cp));
+        Y = l * ((ct * sp) - (S * dy));
+        Z = l * ((S * dz) + st);
 
-        // out[0] = (sp * X) + (cp * Y) + (400);
-        // out[1] = (250) - (((cp*X)-(sp*Y))*st - (Z*ct));
+        out[0] = (sp * X) + (cp * Y) + (400);
+        out[1] = (250) - (((cp*X)-(sp*Y))*st - (Z*ct));
+
+        r = new graphable(out[0], out[1]);
+
+        return r;
 
         // r = new graphable(out[0], out[1]);
         // return r;

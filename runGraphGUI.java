@@ -66,7 +66,7 @@ public class runGraphGUI extends JFrame {
             drawDot(g, (int) i.getX(), (int) i.getY());
         }
 
-
+        /*
         if (pointList.size() != 0 || lineList.size() != 0){
             try {
                 throw new Exception("something went terribly wrong");
@@ -74,6 +74,7 @@ public class runGraphGUI extends JFrame {
                 e.printStackTrace();
             }
         }
+         */
 
     }
     
