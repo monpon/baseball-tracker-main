@@ -2,11 +2,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
+import java.util.Queue;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
  
-/**
+/** 
  * Class that deals with all the GUI portions of our code
  */
 public class runGraphGUI extends JFrame {
@@ -49,9 +50,7 @@ public class runGraphGUI extends JFrame {
 
         graphList a = rG.getGraphList();
         
-        ArrayList<graphableLine> lineList = a.getLineList();
-
-        System.out.println(lineList);
+        Queue<graphableLine> lineList = a.getLineList();
         
         for (graphableLine i : lineList){
             System.out.println("Drawing line at " + i.getX() + " " + i.getY() + " TO " +  
@@ -60,11 +59,20 @@ public class runGraphGUI extends JFrame {
             drawLine(g, (int) i.getX(), (int) i.getY(), (int) i.getEX(), (int) i.getEY());
         }
 
-        ArrayList<graphable> pointList = a.getPointList();
+        Queue<graphable> pointList = a.getPointList();
 
         for (graphable i : pointList){
             System.out.println("Drawing point at " + i);
             drawDot(g, (int) i.getX(), (int) i.getY());
+        }
+
+
+        if (pointList.size() != 0 || lineList.size() != 0){
+            try {
+                throw new Exception("something went terribly wrong");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }

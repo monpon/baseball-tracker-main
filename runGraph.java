@@ -57,7 +57,7 @@ public class runGraph
         
         lGraphList = new graphList(g, gL);
 
-        plotGraph();
+        //plotGraph();
     }
 
     /**
@@ -94,12 +94,13 @@ public class runGraph
 
     private double[][] matrixMult(double[][] m1, double[][] m2)
     {
-        double[][] product = {{m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0]},
-                              {m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1]},
-                              {m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2]}};
+        double prodX = m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0];
+        double prodY = m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1];
+        double prodZ = m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2];
+        double[][] product = {{prodX, prodY, prodZ}};
         return product;
     }
-
+    
     private graphable plotPoint (graphable a){ 
 
         //take a point P(x,y,z) in 3d space. 

@@ -16,7 +16,7 @@ public class main {
         ArrayList<graphable> baseballDots = new ArrayList<>(); //add values to graph here..
 
         baseballDots.add(new graphable(0, 0, 0));
-        baseballDots.add(new graphable(100, 0, 0));
+        baseballDots.add(new graphable(50, 0, 0));
 
         //add all calc.getEquations into baseballDots, so it should just be a bunch of 3d points
         
