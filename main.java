@@ -5,16 +5,15 @@ public class main {
         //run calculations off coord.txt
         //create calc object
 
-        camera c = new camera (0, 0, -2, 0, 1);
+        camera c = new camera (0, -2, 0, 0, 1);
         
         
         //create camera
         //create baseball
         
         //open parameters
-        
-        ArrayList<graphable> baseballDots = new ArrayList<>(); //add values to graph here..
 
+        ArrayList<graphable> baseballDots = new ArrayList<>(); //add values to graph here..
 
         //add all calc.getEquations into baseballDots, so it should just be a bunch of 3d points
         

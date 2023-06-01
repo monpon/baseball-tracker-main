@@ -22,7 +22,7 @@ public class runGraph implements KeyListener
     private double a1 = -1;
     private double a2 = 0.4;
 
-    private double F = 1;
+    private double F = 55;
 
     //takes any graphable object and plots it, using camera
 
@@ -62,7 +62,12 @@ public class runGraph implements KeyListener
         
         lGraphList = new graphList(g, gL);
 
-        plotGraph();
+        //plotGraph();
+        gL.add(plotLine(new graphableLine(0, 0, 0, 0, 0, 50)));
+        gL.add(plotLine(new graphableLine(0, 0, 0, 0, 50, 0)));
+        gL.add(plotLine(new graphableLine(0, 0, 0, 50, 0, 0)));
+
+        lGraphList = new graphList(g, gL);
     }
 
     /**
@@ -91,9 +96,8 @@ public class runGraph implements KeyListener
         }
         
         //graphing graphList
-
+        
         //in 2d valuesA
-        lGraphList = new graphList(g, gL);
 
     }
     
@@ -118,9 +122,9 @@ public class runGraph implements KeyListener
         double[] out = new double[2];
 
         double x0 = a.getX();
-        double y0 = -a.getY();
+        double y0 = a.getY(); //chnged it from - to positive?
         double z0 = a.getZ();
-        
+
         double x1 = x0 * Math.cos(a1) - y0 * Math.sin(a1) - c.getX();
         double y1 = x0 * Math.sin(a1) + y0 * Math.cos(a1);
 
@@ -130,7 +134,7 @@ public class runGraph implements KeyListener
         if (y2 > 0 ){
             out[0] = F * x1/y2;
             out[1] = F * z1/y2;
-
+            
             r = new graphable(out[0], out[1]);
         }
 
@@ -275,9 +279,11 @@ public class runGraph implements KeyListener
         int keyCode = e.getKeyCode();
         if (keyCode == 37){
             a1 += -10;
+            System.out.println("Changed a1 by -10");
         }
         if (keyCode == 39){
             a1 += 10;
+            System.out.println("Changed a1 by 10");
         }
 
 
