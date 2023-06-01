@@ -1,4 +1,4 @@
-# baseball-tracker
+# Baseball Hit-Trax
 Made for our AP CS final project
 
 Three part project: 

@@ -1,11 +1,9 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.Queue;
 
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
  
 /** 
  * Class that deals with all the GUI portions of our code
@@ -52,11 +50,13 @@ public class runGraphGUI extends JFrame {
         
         Queue<graphableLine> lineList = a.getLineList();
         
+
         for (graphableLine i : lineList){
             System.out.println("Drawing line at " + i.getX() + " " + i.getY() + " TO " +  
                                                     i.getEX() + " " + i.getEY());
 
             drawLine(g, (int) i.getX(), (int) i.getY(), (int) i.getEX(), (int) i.getEY());
+
         }
 
         Queue<graphable> pointList = a.getPointList();
