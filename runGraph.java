@@ -1,10 +1,10 @@
 import java.util.ArrayList;
-import java.awt.event.*;
+
 
 /**
  * Object that represents the running of a graph. Handles 3d to 2d calculations
  */
-public class runGraph implements KeyListener
+public class runGraph 
 {
     private camera c;
     private ArrayList<graphable> gList; //list of points to graph
@@ -18,11 +18,8 @@ public class runGraph implements KeyListener
     private final double WIDTH_OF_BALL = 2.85;
     private final double PIXEL_WIDTH_OF_BALL_AT_DISTANCE_FIXED_AWAY = 131.636;
     private final double focalLength = 55.4256842;
-
-    private double a1 = -1;
-    private double a2 = 0.4;
-
-    private double F = 55;
+    
+    private double F = 100;
 
     //takes any graphable object and plots it, using camera
 
@@ -32,7 +29,7 @@ public class runGraph implements KeyListener
     //given camera (which has 3d coords) and an angle, and a fixed FOV, 
     //and a list of graphable objects (also having 3d coords)
     //translate that into a 2d window
-
+    
     /**
      * Main constructor for the runGraph class
      * @param iC The given camera input, which is a camera object
@@ -43,9 +40,12 @@ public class runGraph implements KeyListener
 
         gList = new ArrayList<>();
 
-        for (graphable i : graphList) {
-            gList.add(i);   
+        if (graphList != null){
+            for (graphable i : graphList) {
+                gList.add(i);   
+            }
         }
+
         
 
         g = new ArrayList<graphable>();
@@ -62,10 +62,23 @@ public class runGraph implements KeyListener
         
         lGraphList = new graphList(g, gL);
 
-        //plotGraph();
-        gL.add(plotLine(new graphableLine(0, 0, 0, 0, 0, 50)));
-        gL.add(plotLine(new graphableLine(0, 0, 0, 0, 50, 0)));
-        gL.add(plotLine(new graphableLine(0, 0, 0, 50, 0, 0)));
+        plotGraph();
+        
+        //cube
+        // gL.add(plotLine(new graphableLine(0, 0, 0, 0, 0, 1)));
+        // gL.add(plotLine(new graphableLine(0, 0, 0, 0, 1, 0)));
+        // gL.add(plotLine(new graphableLine(0, 0, 0, 1, 0, 0)));
+        // gL.add(plotLine(new graphableLine(1, 0, 0, 1, 0, 1)));
+        // gL.add(plotLine(new graphableLine(1, 0, 0, 1, 1, 0)));
+        // gL.add(plotLine(new graphableLine(1, 0, 0, 1, 0, 0)));
+        // gL.add(plotLine(new graphableLine(0, 1, 0, 1, 1, 0)));
+        // gL.add(plotLine(new graphableLine(0, 1, 0, 0, 1, 1)));
+        // gL.add(plotLine(new graphableLine(0, 0, 1, 0, 1, 1)));
+        // gL.add(plotLine(new graphableLine(0, 0, 1, 1, 0, 1)));
+        // gL.add(plotLine(new graphableLine(1, 1, 0, 1, 1, 1)));
+        // gL.add(plotLine(new graphableLine(1, 0, 1, 1, 1, 1)));
+        // gL.add(plotLine(new graphableLine(0, 1, 1, 1, 1, 1)));
+
 
         lGraphList = new graphList(g, gL);
     }
@@ -81,7 +94,7 @@ public class runGraph implements KeyListener
     private void plotGraph (){
 
         //graphing axis
-        plot p = new plot(10, 10, 10);
+        plot p = new plot();
         
         for (graphableLine i : p.getXAxis()){
             gL.add(plotLine(i));
@@ -91,9 +104,12 @@ public class runGraph implements KeyListener
             gL.add(plotLine(i));
         }
         
+        //TODO change later when adding z axis again
+        
         for (graphableLine i : p.getZAxis()){
             gL.add(plotLine(i));
         }
+        
         
         //graphing graphList
         
@@ -125,19 +141,19 @@ public class runGraph implements KeyListener
         double y0 = a.getY(); //chnged it from - to positive?
         double z0 = a.getZ();
 
-        double x1 = x0 * Math.cos(a1) - y0 * Math.sin(a1) - c.getX();
-        double y1 = x0 * Math.sin(a1) + y0 * Math.cos(a1);
-
-        double y2 = y1 * Math.cos(a2) - z0 * Math.sin(a2) - c.getY();
-        double z1 = y1 * Math.sin(a2) + z0 * Math.cos(a2) - c.getZ();
-
-        if (y2 > 0 ){
+        double x1 = x0 * Math.cos(c.getAngleW()) - y0 * Math.sin(c.getAngleW()) - c.getX();
+        double y1 = x0 * Math.sin(c.getAngleW()) + y0 * Math.cos(c.getAngleW());
+        
+        double y2 = y1 * Math.cos(c.getAngleL()) - z0 * Math.sin(c.getAngleL()) - c.getY(); //-1, 0.4
+        double z1 = y1 * Math.sin(c.getAngleL()) + z0 * Math.cos(c.getAngleL()) - c.getZ();
+        
+        //if (y2 > 0 ){
             out[0] = F * x1/y2;
             out[1] = F * z1/y2;
             
             r = new graphable(out[0], out[1]);
-        }
-
+        //}
+        
 
         // double cp = Math.cos(c.getAngleW());
         // double sp = Math.sin(c.getAngleW());
@@ -273,30 +289,7 @@ public class runGraph implements KeyListener
         // gL.add(r);
     }
 
-    @Override
-    public void keyPressed(KeyEvent e){
-
-        int keyCode = e.getKeyCode();
-        if (keyCode == 37){
-            a1 += -10;
-            System.out.println("Changed a1 by -10");
-        }
-        if (keyCode == 39){
-            a1 += 10;
-            System.out.println("Changed a1 by 10");
-        }
-
-
+    public camera getC (){
+        return c;
     }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-
 }
