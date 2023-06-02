@@ -12,7 +12,7 @@ public class runGraph
     private ArrayList<graphable> g; //points to put in graphlist
     private ArrayList<graphableLine> gL; //lines to put in graphlist
 
-    private graphList lGraphList;
+    private graphableList lGraphList;
 
     // private final double DISTANCE_FIXED = 12;
     // private final double WIDTH_OF_BALL = 2.85;
@@ -60,7 +60,7 @@ public class runGraph
         //gL.add(plotLine(new graphableLine(0, 0, 0, 0, 500, 0)));
         //gL.add(plotLine(new graphableLine(50, 0, 0, 50, 500, 0)));
         
-        lGraphList = new graphList(g, gL);
+        lGraphList = new graphableList(g, gL);
 
         plotGraph();
         
@@ -80,14 +80,14 @@ public class runGraph
         // gL.add(plotLine(new graphableLine(0, 1, 1, 1, 1, 1)));
 
 
-        lGraphList = new graphList(g, gL);
+        lGraphList = new graphableList(g, gL);
     }
 
     /**
      * Getter method for graphlist
      * @return The graphList 
      */
-    public graphList getGraphList (){
+    public graphableList getGraphList (){
         return lGraphList;
     }
 
@@ -96,19 +96,10 @@ public class runGraph
         //graphing axis
         plot p = new plot();
         
-        for (graphableLine i : p.getXAxis()){
+        for (graphableLine i : p.getAxis()){
             gL.add(plotLine(i));
         }
-        
-        for (graphableLine i : p.getYAxis()){
-            gL.add(plotLine(i));
-        }
-        
-        //TODO change later when adding z axis again
-        
-        for (graphableLine i : p.getZAxis()){
-            gL.add(plotLine(i));
-        }
+
         
         
         //graphing graphList
@@ -191,7 +182,7 @@ public class runGraph
 
 
         // double[] out = new double[2]; 
-
+        
         // double l = 1/Math.tan(0.785398163);
 
         // double cp = Math.cos(c.getAngleW());
@@ -289,6 +280,10 @@ public class runGraph
         // gL.add(r);
     }
 
+    /**
+     * Getter method for camera
+     * @return The camera obejct stored in this file
+     */
     public camera getC (){
         return c;
     }

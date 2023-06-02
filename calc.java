@@ -27,8 +27,9 @@ public class calc {
         double z_velocity_inPixels = Double.parseDouble(values.get(0).substring(18, 19)) / TIME_BETWEEN_FRAMES;
         double y_velocity_inPixels = Double.parseDouble(values.get(0).substring(21, 22)) / TIME_BETWEEN_FRAMES;
 
+        double theta = z_velocity_inPixels/x_velocity_inPixels;
         //As a function of t - sum on run a forloop or smth
-        
+        outputs.add(x_velocity_inPixels * Math.cos(theta) * );
     }
 
     private ArrayList<String> accessFile() {

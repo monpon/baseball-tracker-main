@@ -1,4 +1,6 @@
-        /**
+import java.util.ArrayList;
+
+/**
  * Stores the X, Y, and Z axis along with all the lines
  * as seen in matplotlib- essentially the base 3d graph function
  */
@@ -13,10 +15,8 @@ public class plot {
     private int numLong;
     private int numTall;
 
-    private graphableLine[] XAxis;
-    private graphableLine[] YAxis;
-    private graphableLine[] ZAxis;
-    
+    private ArrayList<graphableLine> axis;
+
     /**
      * No-args constructor for plot. It sets every value to 10.
      */
@@ -25,6 +25,8 @@ public class plot {
         numLong = 10;
         numTall = 10;
         
+        axis = new ArrayList<graphableLine>();
+
         defineAxisArr();
     }
     
@@ -40,89 +42,62 @@ public class plot {
         numLong = l;
         numTall = t;
         
+        axis = new ArrayList<graphableLine>();
+
         defineAxisArr();
     }
     
     private void defineAxisArr (){
-        XAxis = new graphableLine[numWide + 1];
-        YAxis = new graphableLine[numLong + 1];
-        ZAxis = new graphableLine[numWide + numLong + numTall*2 + 4];
-
         double temp = 0;
         for (int i = 0; i < numWide + 1; i++){
-            XAxis[i] = new graphableLine(temp, 0, 0, temp, DISTANCE_, 0);
+            axis.add(new graphableLine(temp, 0, 0, temp, DISTANCE_, 0));
             temp += INTERVAL_;
         }
 
 
         temp = 0;
         for (int i = 0; i < numLong + 1; i++){
-            YAxis[i] = new graphableLine(0, temp, 0, DISTANCE_, temp, 0);
+            axis.add(new graphableLine(0, temp, 0, DISTANCE_, temp, 0));
             temp += INTERVAL_;
         }
         
         //z axis
 
-        
-        int counter = 0;
-
         temp = 0;
         for (int i = 0; i < numWide + 1; i++){
-            ZAxis[counter] = new graphableLine (temp, 0, 0, temp, 0, DISTANCE_);
+            axis.add(new graphableLine (temp, 0, 0, temp, 0, DISTANCE_));
             temp += INTERVAL_;
-            counter++;
         }
 
         temp = 0;
         for (int i = 0; i < numLong + 1; i++){
-            ZAxis[counter] = new graphableLine (0, temp, 0, 0, temp, DISTANCE_);
+            axis.add(new graphableLine (0, temp, 0, 0, temp, DISTANCE_));
             temp += INTERVAL_;
-            counter++;
         }
 
         //sideways z axis things
         temp = 0;
         for (int i = 0; i < numTall + 1; i++){
-            ZAxis[counter] = new graphableLine (0, 0, temp, DISTANCE_, 0, temp);
+            axis.add(new graphableLine (0, 0, temp, DISTANCE_, 0, temp));
             temp += INTERVAL_;
-            counter++;
         }
 
 
         temp = 0;
         for (int i = 0; i < numTall + 1; i++){
-            ZAxis[counter] = new graphableLine(0, 0, temp, 0, DISTANCE_, temp);
+            axis.add(new graphableLine(0, 0, temp, 0, DISTANCE_, temp));
             temp += INTERVAL_;
-            counter++;
         }
         
         
     }
     
     /**
-     * Getter method for the XAxis array
+     * Getter method for all the axis
      * @return The X-Axis
      */
-    public graphableLine[] getXAxis (){
-        return XAxis;
-    }
-
-
-
-    /**
-     * Getter method for the YAxis array
-     * @return The Y-Axis
-     */
-    public graphableLine[] getYAxis (){
-        return YAxis;
-    }
-
-    /**
-     * Getter method for the ZAxis array
-     * @return The Z-Axis
-     */
-    public graphableLine[] getZAxis (){
-        return ZAxis;
+    public ArrayList<graphableLine> getAxis (){
+        return axis;
     }
 
 }

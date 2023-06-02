@@ -63,7 +63,7 @@ public class runGraphGUI extends JFrame implements KeyListener{
 
         rG = new runGraph(Cam, baseballPoints);
 
-        graphList a = rG.getGraphList();
+        graphableList a = rG.getGraphList();
         
         Queue<graphableLine> lineList = a.getLineList();
         
@@ -112,6 +112,9 @@ public class runGraphGUI extends JFrame implements KeyListener{
     }
     */
 
+    /**
+     * Function that changes camera angles and location
+     */
     @Override
     public void keyPressed(KeyEvent e){
 
@@ -186,11 +189,17 @@ public class runGraphGUI extends JFrame implements KeyListener{
     
     }
 
+    /**
+     * Empty method for keyListener interface
+     */
     @Override
     public void keyTyped(KeyEvent e) {
         return;
     }
 
+    /**
+     * Empty method for keyListener interface
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         return;

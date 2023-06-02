@@ -6,7 +6,7 @@ import java.util.Queue;
  * An object that represents a list of both graphable and graphableLine objects
  * To be used as a container and is called during the GUI paint() function
  */
-public class graphList {
+public class graphableList {
     
     //stored not in graphables but in 2ds
     private Queue<graphable> g;
@@ -17,7 +17,7 @@ public class graphList {
      * @param g1 The graphable list
      * @param gL1 The graphableLine list
      */
-    public graphList (ArrayList<graphable> g1, ArrayList<graphableLine> gL1){
+    public graphableList (ArrayList<graphable> g1, ArrayList<graphableLine> gL1){
         g = new LinkedList<graphable>();
         gL = new LinkedList<graphableLine>();
 
