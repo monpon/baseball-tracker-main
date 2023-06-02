@@ -42,7 +42,7 @@ public class runGraph
 
         if (graphList != null){
             for (graphable i : graphList) {
-                gList.add(i);   
+                gList.add(i);
             }
         }
 
@@ -131,7 +131,7 @@ public class runGraph
         double x0 = a.getX();
         double y0 = a.getY(); //chnged it from - to positive?
         double z0 = a.getZ();
-
+        
         double x1 = x0 * Math.cos(c.getAngleW()) - y0 * Math.sin(c.getAngleW()) - c.getX();
         double y1 = x0 * Math.sin(c.getAngleW()) + y0 * Math.cos(c.getAngleW());
         
@@ -139,8 +139,8 @@ public class runGraph
         double z1 = y1 * Math.sin(c.getAngleL()) + z0 * Math.cos(c.getAngleL()) - c.getZ();
         
         //if (y2 > 0 ){
-            out[0] = F * x1/y2;
-            out[1] = F * z1/y2;
+            out[0] = F * x1 / y2;
+            out[1] = F * z1 / y2;
             
             r = new graphable(out[0], out[1]);
         //}

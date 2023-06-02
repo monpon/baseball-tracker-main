@@ -16,7 +16,7 @@ public class calc {
         //pixelHeight of the ball from the ground at initial pos and 2nd frame pos
         //need pixelWidth1 and pixelWidth2 of the ball in the two different frames
 
-
+    
     private graphable[] graphablePoints;
     
     public calc (){
@@ -28,8 +28,17 @@ public class calc {
         double y_velocity_inPixels = Double.parseDouble(values.get(0).substring(21, 22)) / TIME_BETWEEN_FRAMES;
 
         double theta = z_velocity_inPixels/x_velocity_inPixels;
+        double alpha = z_velocity_inPixels/y_velocity_inPixels;
+        double xval = x_velocity_inPixels * Math.cos(theta);
+        double zval = z_velocity_inPixels * Math.sin(theta) - 0.5 * 9.81;
+
+        double yval = y_velocity_inPixels * Math.cos(alpha);
+        
         //As a function of t - sum on run a forloop or smth
-        outputs.add(x_velocity_inPixels * Math.cos(theta) * );
+        String out1 = xval + "* t";
+        String out2 = zval + "* t^2";
+        outputs.add(out1);
+        outputs.add(out2);
     }
 
     private ArrayList<String> accessFile() {

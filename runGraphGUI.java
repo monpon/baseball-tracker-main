@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 public class runGraphGUI extends JFrame implements KeyListener{
 
     private runGraph rG;
-    private final int DOT_SIZE = 10;
+    private final int DOT_SIZE = 8;
     private camera Cam;
     ArrayList<graphable> baseballPoints;
 
@@ -44,15 +44,16 @@ public class runGraphGUI extends JFrame implements KeyListener{
     void drawLine(Graphics g, int x1, int y1, int x2, int y2) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(0, 0, 0));
-        g2d.drawLine(x1 + 400, y1 + 250, x2 + 400, y2 + 250);
+        g2d.drawLine(x1 + getWidth() / 2, y1 + getHeight() / 2,
+                     x2 + getWidth() / 2, y2 + getHeight() / 2);
         
     }
     
     void drawDot(Graphics g, int x, int y) {
         Graphics g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(255, 0, 0));
-        g2d.fillOval(x + 400, y + 250, DOT_SIZE, DOT_SIZE);
+        g2d.setColor(new Color(230, 0, 0));
+        g2d.fillOval(x + getWidth() / 2, y + getHeight() / 2, DOT_SIZE, DOT_SIZE);
     }
 
     /**
@@ -92,7 +93,7 @@ public class runGraphGUI extends JFrame implements KeyListener{
             }
         }
          */
-
+        
     }
     
     /* 
@@ -121,65 +122,52 @@ public class runGraphGUI extends JFrame implements KeyListener{
         int keyCode = e.getKeyCode();
         if (keyCode == 37){
             rG.getC().setAngleW(rG.getC().getAngleW() + 0.1);
-
             repaint();
             
         }
         if (keyCode == 39){
             rG.getC().setAngleW(rG.getC().getAngleW() - 0.1);
-
-
             repaint();
         }
         
         if (keyCode == 38){
             rG.getC().setAngleL(rG.getC().getAngleL() - 0.1);
-
-
             repaint();
             
         }
         if (keyCode == 40){
             rG.getC().setAngleL(rG.getC().getAngleL() + 0.1);
-
-
             repaint();
         }
 
 
         if (keyCode == 87){
             rG.getC().setPoint(rG.getC().getX(), rG.getC().getY() - 0.2, rG.getC().getZ());
-            
             repaint();
         }
 
         if (keyCode == 83){
             rG.getC().setPoint(rG.getC().getX(), rG.getC().getY() + 0.2, rG.getC().getZ());
-            
             repaint();
         }
 
         if (keyCode == 65){
             rG.getC().setPoint(rG.getC().getX() + 0.2, rG.getC().getY(), rG.getC().getZ());
-            
             repaint();
         }
 
         if (keyCode == 68){
             rG.getC().setPoint(rG.getC().getX() - 0.2, rG.getC().getY(), rG.getC().getZ());
-            
             repaint();
         }
 
         if (keyCode == 69){
             rG.getC().setPoint(rG.getC().getX(), rG.getC().getY(), rG.getC().getZ() + 0.2);
-            
             repaint();
         }
 
         if (keyCode == 81){
             rG.getC().setPoint(rG.getC().getX(), rG.getC().getY(), rG.getC().getZ() - 0.2);
-            
             repaint();
         }
 
