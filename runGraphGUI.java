@@ -117,27 +117,27 @@ public class runGraphGUI extends JFrame implements KeyListener{
 
         int keyCode = e.getKeyCode();
         if (keyCode == 37){
-            rG.getC().setAngleW(rG.getC().getAngleW() + 0.2);
+            rG.getC().setAngleW(rG.getC().getAngleW() + 0.1);
 
             repaint();
             
         }
         if (keyCode == 39){
-            rG.getC().setAngleW(rG.getC().getAngleW() - 0.2);
+            rG.getC().setAngleW(rG.getC().getAngleW() - 0.1);
 
 
             repaint();
         }
         
         if (keyCode == 38){
-            rG.getC().setAngleL(rG.getC().getAngleL() - 0.2);
+            rG.getC().setAngleL(rG.getC().getAngleL() - 0.1);
 
 
             repaint();
             
         }
         if (keyCode == 40){
-            rG.getC().setAngleL(rG.getC().getAngleL() + 0.2);
+            rG.getC().setAngleL(rG.getC().getAngleL() + 0.1);
 
 
             repaint();

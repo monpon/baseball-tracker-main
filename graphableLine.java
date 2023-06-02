@@ -79,6 +79,10 @@ public class graphableLine extends graphable {
         return endZ;
     }
     
+    /**
+     * Overrides the toString method
+     * @return the string in a new format
+     */
     public String toString() {
         return getX() + " " + getY() + " " + getZ() + " TO " + getEX() + " " + getEY() + " " + getEZ();
     }

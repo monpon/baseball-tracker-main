@@ -68,6 +68,10 @@ public class graphable {
         z = nZ;
     }
 
+    /**
+     * overrides the toString function for debugging
+     * @return the string in a new format
+     */
     public String toString() {
         return getX() + " " + getY() + " " + getZ();
     }

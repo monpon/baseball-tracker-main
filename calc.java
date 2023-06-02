@@ -22,11 +22,13 @@ public class calc {
     public calc (){
         ArrayList<String> values = accessFile();
         
+        ArrayList<String> outputs = new ArrayList<>();
         double x_velocity_inPixels = Double.parseDouble(values.get(0).substring(15, 16)) / TIME_BETWEEN_FRAMES;
         double z_velocity_inPixels = Double.parseDouble(values.get(0).substring(18, 19)) / TIME_BETWEEN_FRAMES;
         double y_velocity_inPixels = Double.parseDouble(values.get(0).substring(21, 22)) / TIME_BETWEEN_FRAMES;
 
-
+        //As a function of t - sum on run a forloop or smth
+        
     }
 
     private ArrayList<String> accessFile() {

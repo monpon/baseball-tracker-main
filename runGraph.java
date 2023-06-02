@@ -14,10 +14,10 @@ public class runGraph
 
     private graphList lGraphList;
 
-    private final double DISTANCE_FIXED = 12;
-    private final double WIDTH_OF_BALL = 2.85;
-    private final double PIXEL_WIDTH_OF_BALL_AT_DISTANCE_FIXED_AWAY = 131.636;
-    private final double focalLength = 55.4256842;
+    // private final double DISTANCE_FIXED = 12;
+    // private final double WIDTH_OF_BALL = 2.85;
+    // private final double PIXEL_WIDTH_OF_BALL_AT_DISTANCE_FIXED_AWAY = 131.636;
+    // private final double focalLength = 55.4256842;
     
     private double F = 100;
 
@@ -117,14 +117,14 @@ public class runGraph
 
     }
     
-    private double[][] matrixMult(double[][] m1, double[][] m2)
-    {
-        double prodX = m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0];
-        double prodY = m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1];
-        double prodZ = m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2];
-        double[][] product = {{prodX, prodY, prodZ}};
-        return product;
-    }
+    // private double[][] matrixMult(double[][] m1, double[][] m2)
+    // {
+    //     double prodX = m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0];
+    //     double prodY = m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1];
+    //     double prodZ = m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2];
+    //     double[][] product = {{prodX, prodY, prodZ}};
+    //     return product;
+    // }
     
     private graphable plotPoint (graphable a){ 
 
