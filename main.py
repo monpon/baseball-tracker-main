@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+#random variables being assigned, there's a lambda in there too for pixel distance calculations for velo aware fill (kinda buggy)
 prevCircle = None
 circ1 = None
 dist = lambda x1, y1, x2, y2: (x1-x2)**2 + (y1-y2)**2
@@ -8,30 +9,32 @@ deltay = 0
 deltas = 0
 deltalist = {}
 
-
+#source file
 cap = cv2.VideoCapture("backview.MOV")
 
-
+#object detector creation
 object_detector = cv2.createBackgroundSubtractorMOG2(history=1000, varThreshold=10)
 framenum = 0
+#Frame Iteration
 while True:
     framenum+=1
     ret, frame = cap.read()
     height, width, _ = frame.shape
 
 
-    # 1. Object Detection
+    #Object Detection masking
     objectmask = object_detector.apply(frame)
     _, objectmask = cv2.threshold(objectmask, 254, 255, cv2.THRESH_BINARY)
     nlabels, labels, stats, centroids = cv2.connectedComponentsWithStats(objectmask, None, None, None, 8, cv2.CV_32S)
     areas = stats[1:, cv2.CC_STAT_AREA]
-
+    #spot removal (removes little artifacts from the camera for more cohesive shapes)
     result = np.zeros((labels.shape), np.uint8)
 
     for i in range(0, nlabels - 1):
         if areas[i] >= 100:
             result[labels == i + 1] = 255
     objectmask = result
+    #color masking to remove all non-whites
     lower_white = np.array([0,0,80])
     upper_white = np.array([255,75,255])
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -44,10 +47,13 @@ while True:
     key = cv2.waitKey(30)
     grayFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     cv2.imshow('grey', grayFrame)
+    #guassian blur to smooth out the image
     blurFrame = cv2.GaussianBlur(grayFrame, (17,17),0)
     cv2.imshow('bin', frame)
+    #Hough circle detection, math is too mathy, hard to explain/understand
     circles = cv2.HoughCircles(blurFrame, cv2.HOUGH_GRADIENT, 1, 500, param1=50, param2=30, minRadius=1, maxRadius=25)
     chosen = None
+    #weeds out all the circles to find the most accurate one
     if circles is not None:
         circles = np.uint16(np.around(circles))
         chosen = None
@@ -60,12 +66,14 @@ while True:
                     print(chosen[0], chosen[1])
         cv2.circle(frame, (chosen[0], chosen[1]), 1, (0, 100, 100), 3)
         cv2.circle(frame, (chosen[0], chosen[1]), chosen[2], (255, 0, 255), 3)
+    #if no circles are found, velo aware fill fills the frame with probably circle locations
+    #only for visualization purposes, if the computer isn't completely sure, it won't export the circles
     if (circ1 is not None) and (chosen is not None):
         if (circ1[0] != chosen[0]) or (circ1[1] != chosen[1]) or (circ1[2] != chosen[2]):
             deltax = int(chosen[0]) - int(circ1[0])
             deltay = int(chosen[1]) - int(circ1[1])
             deltas = int(chosen[2]) - int(circ1[2])
-
+            #false positive weeding
             if deltas<50 and deltas>-50 and deltax > -50 and deltax < 50 and deltay < 50 and deltay > -50:
                 deltalist[framenum] = [[int(chosen[0]), int(chosen[1]), int(chosen[2])], [deltax, deltay, deltas]]
                 print(framenum)
